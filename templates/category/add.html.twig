@@ -1,0 +1,9 @@
+{% form_theme categoryForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+   <div class="container-md mt-3 text-center">
+      <h2 class="text-secondary">Add category</h2>
+      {{ form (categoryForm) }}
+   </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% form_theme userForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="container-md mt-3 text-center">
+		<h2 class="text-secondary">Edit user</h2>
+		{{ form (userForm) }}
+		</div>
+	{% endblock %}

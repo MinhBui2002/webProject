@@ -1,0 +1,27 @@
+{% extends "customerBase.html.twig" %}
+
+
+{% block link %}
+    <link rel="stylesheet" href="{{asset('css/landingPage.css')}}">  
+    <link rel="stylesheet" href="{{asset('css/grid.css')}}">  
+{% endblock %}
+{% block body %}
+  
+   <div class="grid wide">
+          
+         
+         
+               <div class="row">
+               <img class="product__img" src="{{ asset('images/cover.png') }}" width="100" height="120"> 
+                  
+               <div class="product__info">Name:  {{product.ProductName}}</div> 
+               <div class="product__info">Quantity: {{product.ProductQuantity}}</div> 
+               <div class="product__info">Price: {{product.ProductPrice }}</div>   
+               <div class="product__info">Description: {{product.ProductDescription}}</div> 
+               <form type="integer" action=""></form>
+               <button type="submit">Add to card</button>
+               </div>
+          
+    
+   </div>
+{% endblock %}

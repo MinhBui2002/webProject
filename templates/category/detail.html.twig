@@ -1,0 +1,31 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+   <div class="container">
+      <table class="table text-center">
+         <thead>
+            <tr>
+               <th>Category ID</th>
+               <th>Category Name</th>
+               <th>Product</th>           
+            </tr>
+         </thead>
+         <tbody>
+               <tr>
+                  <td>{{category.id }} </td>
+                  <td>{{category.CategoryName}}</td>
+                  <td>{{category.Product.id}}</td>
+                    
+                  <td>
+                     <a class="btn btn-warning" href="{{ path('edit_category', {'id' : category.id }) }}">
+                        EDIT
+                     </a>
+                     <a class="btn btn-danger" href="{{ path('delete_category_by_id', {'id' : category.id }) }}">
+                        DELETE
+                     </a>
+                  </td>
+               </tr>
+         </tbody> 
+      </table>
+   </div>
+{% endblock %}

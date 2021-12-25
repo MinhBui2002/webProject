@@ -1,0 +1,9 @@
+{% form_theme orderForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+   <div class="container-md mt-3 text-center">
+      <h2 class="text-secondary">Add Order</h2>
+      {{ form (orderForm) }}
+   </div>
+{% endblock %}
