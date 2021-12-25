@@ -1,0 +1,39 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+   <div class="container">
+      <table class="table text-center">
+         <thead>
+            <tr>
+               <th>Order ID</th>
+               <th>Order date</th>
+               <th>User</th>
+               <th>Detail price</th>
+               <th>Detai quantity</th>
+               <th>Detail total</th>
+               
+               <th>Menu</th>
+            </tr>
+         </thead>
+         <tbody>
+               <tr>
+                  <td>{{ order.id }} </td>
+                  <td>{{ order.OrderDate | date('d/m/Y')}} </td>
+                  <td>{{order.User.UserDetail.UserName}}</td>
+                   <td>{{order.OrderDetail.DetailPrice}}</td> 
+                   <td>{{order.OrderDetail.DetailQuantity}}</td>
+                   <td>{{order.OrderDetail.DetailTotal}}</td>
+                    
+                  <td>
+                     <a class="btn btn-warning" href="{{ path('edit_order', {'id' : order.id }) }}">
+                        EDIT
+                     </a>
+                     <a class="btn btn-danger" href="{{ path('delete_order_by_id', {'id' : order.id }) }}">
+                        DELETE
+                     </a>
+                  </td>
+               </tr>
+         </tbody> 
+      </table>
+   </div>
+{% endblock %}

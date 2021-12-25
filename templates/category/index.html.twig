@@ -1,0 +1,42 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+   <div class="container">
+      <a class="btn btn-outline-success mt-3"  href="{{ path ('add_category')}}">Add New Category</a>
+      <table class="table text-center">
+         <thead>
+            <tr>
+               <th>Category ID</th>
+               <th>Category Name</th>
+                
+               <th>Product</th> 
+               
+            </tr>
+         </thead>
+         <tbody>
+            {% for category in categories %}
+               <tr>
+                  <td>{{category.id }} </td>
+                  <td>{{category.CategoryName}}</td>
+                  <td> 
+                     {% for product in category.Product %}
+                       <a href="{{ path('view_product', {'id' : product.id }) }}">
+                           {{ product.ProductName }}
+                       </a>
+                       <br>
+                     {% endfor %}
+                  </td>
+                  <td>
+                     <a class="btn btn-warning" href="{{ path('edit_category', {'id' : category.id }) }}">
+                        EDIT
+                     </a>
+                     <a class="btn btn-danger" href="{{ path('delete_category_by_id', {'id' : category.id }) }}">
+                        DELETE
+                     </a>
+                  </td>
+               </tr>
+            {% endfor %}    
+         </tbody> 
+      </table>
+   </div>
+{% endblock %}

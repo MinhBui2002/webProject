@@ -1,0 +1,9 @@
+{% form_theme productForm 'bootstrap_5_layout.html.twig' %}
+{% extends "base.html.twig" %}
+
+{% block body %}
+   <div class="container-md mt-3 text-center">
+      <h2 class="text-secondary">Add Product</h2>
+      {{ form (productForm) }}
+   </div>
+{% endblock %}

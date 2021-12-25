@@ -1,0 +1,34 @@
+{% extends "base.html.twig" %}
+
+{% block body %}
+	<div class="container">
+		<table class="table text-center">
+			<thead>
+				<tr>
+					<th>User ID</th>
+					<th>Username</th>
+					<th>Phone number</th>
+					<th>Address</th>
+					<th>Menu</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>{{ user.id}}
+					</td>
+					<td>{{user.UserDetail.UserName}}</td>
+					<td>{{user.UserDetail.UserPhonenum}}</td>
+					<td>{{user.UserDetail.UserAddress}}</td>
+					<td>
+						<a class="btn btn-warning" href="{{ path('edit_user', {'id' : user.id }) }}">
+							EDIT
+						</a>
+						<a class="btn btn-danger" href="{{ path('delete_user_by_id', {'id' : user.id }) }}">
+							DELETE
+						</a>
+					</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+{% endblock %}
