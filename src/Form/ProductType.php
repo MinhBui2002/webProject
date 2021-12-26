@@ -60,14 +60,27 @@ class ProductType extends AbstractType
                     'required' => true
                 ]
             )
-            ->add('category', EntityType::class,
+            ->add(
+                'category', 
+                EntityType::class,
+                [
+                    'label' => 'Category',
+                    'required' => true,
+                    'class' => Category::class,
+                    'multiple' => false
+                ]
+            )
+            ->add(
+                'category',
+                EntityType::class,
             
-            [
-                'label' => 'Category',
-                'required' => true,
-                'class' => Category::class,
-                'multiple' => false
-            ])
+                [
+                    'label' => 'Category',
+                    'required' => true,
+                    'class' => Category::class,
+                    'multiple' => false
+                ]
+            )
             ->add('Add', SubmitType::class);
     }
 
