@@ -48,20 +48,21 @@ class ProductType extends AbstractType
                 TextType::class,
                 [
                     'label' => 'Image',
+                    'data_class' => null,
+                    'required' => is_null($builder->getData()->getProductImage())
                 ]
             )
             ->add(
                 'ProductDescription',
                 TextType::class,
                 [
-                    'label' => 'Description',
-                    'required' => false
+                    'label' => 'Name',
+                    'required' => true
                 ]
             )
             ->add('category', EntityType::class,
             
             [
-                'choice_label' => 'CategoryName',
                 'label' => 'Category',
                 'required' => true,
                 'class' => Category::class,
