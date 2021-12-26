@@ -38,7 +38,7 @@ class Product
     private $ProductImage;
 
     /**
-     * @ORM\Column(type="string", length=255, nullable=true)
+     * @ORM\Column(type="float")
      */
     private $ProductDescription;
 
@@ -94,15 +94,16 @@ class Product
         return $this;
     }
 
-    public function getProductImage(): ?string
+    public function getProductImage()
     {
         return $this->ProductImage;
     }
 
-    public function setProductImage(string $ProductImage): self
+    public function setProductImage($ProductImage)
     {
-        $this->ProductImage = $ProductImage;
-
+        if ($ProductImage != null) {
+            $this->ProductImage = $ProductImage;
+        }
         return $this;
     }
 
