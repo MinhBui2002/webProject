@@ -37,7 +37,7 @@
                })
             }}
          </div>
-          <div class="form-group">
+         <div class="form-group">
             {{ form_label (productForm.ProductDescription)}}
             {{ form_widget (productForm.ProductDescription ,
                {
@@ -45,9 +45,17 @@
                })
             }}
          </div>
-          <div class="form-group">
+         <div class="form-group">
             {{ form_label (productForm.category)}}
             {{ form_widget (productForm.category ,
+               {
+                  'attr' : {'class' : 'form-control'}
+               })
+            }}
+         </div>
+         <div class="form-group">
+            {{ form_label (productForm.orderDetail)}}
+            {{ form_widget (productForm.orderDetail ,
                {
                   'attr' : {'class' : 'form-control'}
                })
