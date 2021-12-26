@@ -3,8 +3,10 @@
 namespace App\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use function PHPUnit\Framework\throwException;
 use App\Entity\Product;
 use App\Form\ProductType;
 
@@ -55,10 +57,23 @@ class ProductController extends AbstractController
      * @Route("/product/add", name = "add_product")
      */
     public function addProduct (Request $request) {
-        $product = new product;
-        $productForm = $this->createForm(ProductType::class, $product);
+        $product = new Product();
+        $productForm = $this->createForm(productType::class, $product);
         $productForm->handleRequest($request);
+
         if ($productForm->isSubmitted() && $productForm->isValid()) {
+            $image = $product->getProductImage();
+            $imgName = uniqid();
+            $imgExtension = $image->guessExtension();
+            $imageName = $imgName . "." . $imgExtension;
+             try {
+             $image->move(
+                 $this->getParameter('product_image'), $imageName
+             );  
+            } catch (FileException $e) {
+               throwException($e);
+            }
+            $product->setProductImage($imageName);
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($product);
             $manager->flush();
@@ -77,7 +92,21 @@ class ProductController extends AbstractController
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
         $productForm = $this->createForm(productType::class, $product);
         $productForm->handleRequest($request);
+
         if ($productForm->isSubmitted() && $productForm->isValid()) {
+            $file = $productForm['image']->getData();
+            if ($file != null) {
+                $image = $product->getProductImage();
+                $imgName = uniqid();
+                $imgExtension = $image->guessExtension();
+                $imageName = $imgName . "." . $imgExtension;
+                try {
+                    $image->move($this->getParameter('product_image'), $imageName);
+                } catch (FileException $e) {
+                    throwException($e);
+                }
+                $product->setProductImage($imageName);
+            }
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($product);
             $manager->flush();
