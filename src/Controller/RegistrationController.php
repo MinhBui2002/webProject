@@ -3,6 +3,8 @@
 namespace App\Controller;
 
 use App\Entity\User;
+use App\Entity\UserDetail;
+use App\Form\UserDetailType;
 use App\Form\RegistrationFormType;
 use App\Security\UserAuthenticatiorAuthenticator;
 use Doctrine\ORM\EntityManagerInterface;
@@ -23,6 +25,9 @@ class RegistrationController extends AbstractController
         $user = new User();
         $form = $this->createForm(RegistrationFormType::class, $user);
         $form->handleRequest($request);
+        // $userDetail = new userDetail;
+        // $userDetailForm = $this->createForm(userDetailType::class, $userDetail);
+        // $userDetailForm->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
             // encode the plain password
@@ -35,12 +40,14 @@ class RegistrationController extends AbstractController
             $user->setRoles(['ROLE_CUSTOMER']);
             $entityManager->persist($user);
             $entityManager->flush();
+
             // do anything else you need here, like send an email
 
             return $this->redirectToRoute("app_login");
         }
 
         return $this->render('registration/register.html.twig', [
+            // 'userDetailForm' => $userDetailForm->createView(),
             'registrationForm' => $form->createView(),
         ]);
     }

@@ -3,27 +3,51 @@
 {% block title %}Register
 {% endblock %}
 
+
 {% block nav %}{% endblock %}
 
 {% block body %}
 	<div class="container text-center col-5 mt-3">
 		<h1 class="text-primary">Account Registration</h1>
-
-		{{ form_start(registrationForm) }}
-		{{ form_errors(registrationForm.email) }}
-		<div class="form-control">
-			<label>Email</label>
-			{{ form_widget(registrationForm.email) }}
-		</div>
-		<div class="form-control">
-			<label>Password</label>
-			{{ form_widget(registrationForm.plainPassword) }}
-		</div>
-		<div class="form-check">
-			{{ form_widget(registrationForm.agreeTerms) }}
-			<lable>Agree terms</label>
-		</div>
-		<button type="submit" class="btn btn-primary">Register</button>
-		{{ form_end(registrationForm) }}
-	</div>
-{% endblock %}
+		{% if not registrationForm.vars.valid %}
+			<ul>
+				{# Loop through every form item #}
+				{% for child in registrationForm.children %}
+					{# Display the errors of the form item #}
+					{%for error in child.vars.errors%}
+						<div class="alert alert-danger">{{ error.message }}</div>
+						{%endfor%}
+						{%endfor%}
+					</ul>
+					{%endif%}
+					{{ form_start(registrationForm) }}
+					{{ form_errors(registrationForm) }}
+					<div class="form-control">
+						<label>Username</label>
+						{{ form_widget(registrationForm.email) }}
+					</div>
+					<div class="form-control">
+						<label>Password</label>
+						{{ form_widget(registrationForm.plainPassword) }}
+					</div>
+					<label>User Detail</label>
+					<div class="form-control">
+						<label>Username</label>
+						{{ form_widget(registrationForm.userDetail.UserName) }}
+					</div>
+					<div class="form-control">
+						<label>Phone number</label>
+						{{ form_widget(registrationForm.userDetail.UserPhonenum) }}
+					</div>
+					<div class="form-control">
+						<label>Address</label>
+						{{ form_widget(registrationForm.userDetail.UserAddress) }}
+					</div>
+					<div class="form-check">
+						{{ form_widget(registrationForm.agreeTerms) }}
+						<lable>Agree terms</label>
+					</div>
+					<button type="submit" class="btn btn-primary">Register</button>
+					{{ form_end(registrationForm) }}
+				</div>
+			{% endblock %}

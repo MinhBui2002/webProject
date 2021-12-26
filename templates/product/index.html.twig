@@ -1,50 +1,53 @@
 {% extends "base.html.twig" %}
 
 {% block body %}
-   <div class="container">
-      <a class="btn btn-outline-success mt-3"  href="{{ path ('add_product')}}">Add New Product</a>
-      <table class="table text-center">
-         <thead>
-            <tr>
-               <th>Product ID</th>
-               <th>Product Name</th>
-               <th>Product Quantity</th>           
-               <th>Product Price</th>  
-               <th>Product Image</th>  
-               <th>Product Description</th>  
-               <th>Category</th> 
-               <th>Order Detail</th>   
-            </tr>
-         </thead>
-         <tbody>
-            {% for product in products %}
-               <tr>
-                  <td>{{product.id }} </td>
-                  <td>{{product.ProductName}}</td>
-                  <td>{{product.ProductQuantity}}</td>
-                  <td>{{product.ProductPrice }} </td>
-                  <td>
-                        <img src="{{ asset('images/cover.png') }}" width="100" height="120">          
-                  </td>
-                  <td>{{product.ProductDescription}}</td>
-                  <td>{{product.category.id| default('N/A') }} </td>
-                  <td>
-                     {{ product.orderDetail.id |default('N/A')}}   
-                  </td>
-                  <td>
-                     <a class="btn btn-primary" href="{{ path('view_product', {'id' : product.id }) }}">
-                        DETAIL
-                     </a>
-                     <a class="btn btn-warning" href="{{ path('edit_product', {'id' : product.id }) }}">
-                        EDIT
-                     </a>
-                     <a class="btn btn-danger" href="{{ path('delete_product_by_id', {'id' : product.id }) }}">
-                        DELETE
-                     </a>
-                  </td>
-               </tr>
-            {% endfor %}    
-         </tbody> 
-      </table>
-   </div>
+	<div class="container">
+		<a class="btn btn-outline-success mt-3" href="{{ path ('add_product')}}">Add New Product</a>
+		<table class="table text-center">
+			<thead>
+				<tr>
+					<th>Product ID</th>
+					<th>Product Name</th>
+					<th>Product Quantity</th>
+					<th>Product Price</th>
+					<th>Product Image</th>
+					<th>Product Description</th>
+					<th>Category</th>
+					<th>Order Detail</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for product in products %}
+					<tr>
+						<td>{{product.id }}
+						</td>
+						<td>{{product.ProductName}}</td>
+						<td>{{product.ProductQuantity}}</td>
+						<td>{{product.ProductPrice }}
+						</td>
+						<td>
+							<img src="{{ asset('images/cover.png') }}" width="100" height="120">
+						</td>
+						<td>{{product.ProductDescription}}</td>
+						<td>{{product.category.id| default('N/A') }}
+						</td>
+						<td>
+							{{ product.orderDetail.id |default('N/A')}}
+						</td>
+						<td>
+							<a class="btn btn-primary" href="{{ path('view_product', {'id' : product.id }) }}">
+								DETAIL
+							</a>
+							<a class="btn btn-warning" href="{{ path('edit_product', {'id' : product.id }) }}">
+								EDIT
+							</a>
+							<a class="btn btn-danger" href="{{ path('delete_product_by_id', {'id' : product.id }) }}">
+								DELETE
+							</a>
+						</td>
+					</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+	</div>
 {% endblock %}
