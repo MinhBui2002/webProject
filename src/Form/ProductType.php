@@ -71,13 +71,13 @@ class ProductType extends AbstractType
                 ]
             )
             ->add(
-                'category',
+                'orderDetail',
                 EntityType::class,
             
                 [
-                    'label' => 'Category',
+                    'label' => 'Order Detail',
                     'required' => true,
-                    'class' => Category::class,
+                    'class' => OrderDetail::class,
                     'multiple' => false
                 ]
             )
