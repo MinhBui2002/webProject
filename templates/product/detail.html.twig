@@ -22,17 +22,17 @@
                   <td>{{product.ProductQuantity}}</td>
                   <td>{{product.ProductPrice }} </td>
                   <td>
-                        <img src="{{ asset('images/cover.png') }}" width="100" height="120">          
+                        <img src="{{ asset('covers/'~product.ProductImage) }}" width="100" height="120">          
                   </td>
                   <td>{{product.ProductDescription}}</td>
-                  <td>{{product.category.id | default('N/A')}} </td>
-                  <td>{{product.orderDetail.id | default('N/A')}}</td>
+                  <td>{{product.category.id }} </td>
+                  <td>{{product.orderDetail.id}}</td>
                     
                   <td>
-                     <a class="btn btn-warning" href="{{ path('edit_product', {'id' : product.id }) }}">
+                     <a class="btn btn-warning" href="{{ path('edit_category', {'id' : category.id }) }}">
                         EDIT
                      </a>
-                     <a class="btn btn-danger" href="{{ path('delete_product_by_id', {'id' : product.id }) }}">
+                     <a class="btn btn-danger" href="{{ path('delete_category_by_id', {'id' : category.id }) }}">
                         DELETE
                      </a>
                   </td>
