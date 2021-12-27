@@ -17,13 +17,19 @@
 					<tr>
 						<td>{{ user.id }}</td>
 						<td>
-							{{ user.UserEmail }}
+							{{ user.email }}
 						</td>
 						<td>
-							{{ user.Userpassword }}
+							{{ user.password }}
 						</td>
 						<td>
-							{{ user.UserRole }}
+							{% if is_granted('ROLE_ADMIN') %}
+								Admin
+							{% elseif is_granted('ROLE_CUSTOMER') %}
+								Customer
+							{% else %}
+								Anonymous
+							{% endif %}
 						</td>
 						<td>
 							<a class="btn btn-primary" href="{{ path('view_user', {'id' : user.id }) }}">

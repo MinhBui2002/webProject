@@ -2,7 +2,9 @@
 
 namespace App\Controller;
 
+
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\User;
@@ -59,12 +61,19 @@ class UserController extends AbstractController
     /**
      * @Route("/user/add", name = "add_user")
      */
-    public function addUser(Request $request)
+    public function addUser(Request $request, UserPasswordHasherInterface $userPasswordHasher)
     {
         $user = new user;
         $userForm = $this->createForm(userType::class, $user);
         $userForm->handleRequest($request);
         if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $userForm->get('plainPassword')->getData()
+                )
+            );
+            $user->setRoles(['ROLE_CUSTOMER']);
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($user);
             $manager->flush();
@@ -81,12 +90,19 @@ class UserController extends AbstractController
     /**
      * @Route("/user/edit/{id}", name = "edit_user")
      */
-    public function editUser(Request $request, $id)
+    public function editUser(Request $request, $id, UserPasswordHasherInterface $userPasswordHasher)
     {
         $user = $this->getDoctrine()->getRepository(User::class)->find($id);
         $userForm = $this->createForm(userType::class, $user);
         $userForm->handleRequest($request);
         if ($userForm->isSubmitted() && $userForm->isValid()) {
+            $user->setPassword(
+                $userPasswordHasher->hashPassword(
+                    $user,
+                    $userForm->get('plainPassword')->getData()
+                )
+            );
+            $user->setRoles(['ROLE_CUSTOMER']);
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($user);
             $manager->flush();
