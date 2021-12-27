@@ -54,19 +54,31 @@ class ProductType extends AbstractType
                 'ProductDescription',
                 TextType::class,
                 [
-                    'label' => 'Description',
-                    'required' => false
+                    'label' => 'Name',
+                    'required' => true
                 ]
             )
-            ->add('category', EntityType::class,
-            
-            [
-                'choice_label' => 'CategoryName',
-                'label' => 'Category',
-                'required' => true,
-                'class' => Category::class,
-                'multiple' => false
-            ])
+            ->add(
+                'category',
+                EntityType::class,
+                [
+                    'label' => 'Category',
+                    'required' => true,
+                    'class' => Category::class,
+                    'multiple' => false
+                ]
+            )
+            ->add(
+                'orderDetail',
+                EntityType::class,
+
+                [
+                    'label' => 'Order Detail',
+                    'required' => true,
+                    'class' => OrderDetail::class,
+                    'multiple' => false
+                ]
+            )
             ->add('Add', SubmitType::class);
     }
 

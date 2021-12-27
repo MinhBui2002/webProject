@@ -17,6 +17,7 @@
 					<tr>
 						<td>{{ user.id }}</td>
 						<td>
+<<<<<<< HEAD
 							{{ user.email }}
 						</td>
 						<td>
@@ -30,6 +31,15 @@
 							{% else %}
 								Anonymous
 							{% endif %}
+=======
+							{{ user.UserEmail }}
+						</td>
+						<td>
+							{{ user.Userpassword }}
+						</td>
+						<td>
+							{{ user.UserRole }}
+>>>>>>> a4001ff68865bb35015d8f9817f2cece41612485
 						</td>
 						<td>
 							<a class="btn btn-primary" href="{{ path('view_user', {'id' : user.id }) }}">

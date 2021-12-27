@@ -23,6 +23,12 @@
     "doctrine/common": {
         "version": "3.2.0"
     },
+<<<<<<< HEAD
+=======
+    "doctrine/data-fixtures": {
+        "version": "1.5.1"
+    },
+>>>>>>> a4001ff68865bb35015d8f9817f2cece41612485
     "doctrine/dbal": {
         "version": "3.2.0"
     },
@@ -35,7 +41,11 @@
             "repo": "github.com/symfony/recipes",
             "branch": "master",
             "version": "2.4",
+<<<<<<< HEAD
             "ref": "f98f1affe028f8153a459d15f220ada3826b5aa2"
+=======
+            "ref": "032f52ed50a27762b78ca6a2aaf432958c473553"
+>>>>>>> a4001ff68865bb35015d8f9817f2cece41612485
         },
         "files": [
             "./config/packages/doctrine.yaml",
@@ -45,6 +55,21 @@
             "./src/Repository/.gitignore"
         ]
     },
+<<<<<<< HEAD
+=======
+    "doctrine/doctrine-fixtures-bundle": {
+        "version": "3.4",
+        "recipe": {
+            "repo": "github.com/symfony/recipes",
+            "branch": "master",
+            "version": "3.0",
+            "ref": "1f5514cfa15b947298df4d771e694e578d4c204d"
+        },
+        "files": [
+            "./src/DataFixtures/AppFixtures.php"
+        ]
+    },
+>>>>>>> a4001ff68865bb35015d8f9817f2cece41612485
     "doctrine/doctrine-migrations-bundle": {
         "version": "3.2",
         "recipe": {
@@ -74,7 +99,11 @@
         "version": "3.3.2"
     },
     "doctrine/orm": {
+<<<<<<< HEAD
         "version": "2.10.4"
+=======
+        "version": "2.10.3"
+>>>>>>> a4001ff68865bb35015d8f9817f2cece41612485
     },
     "doctrine/persistence": {
         "version": "2.2.3"
@@ -89,7 +118,11 @@
         "version": "v1.0.5"
     },
     "laminas/laminas-code": {
+<<<<<<< HEAD
         "version": "4.5.1"
+=======
+        "version": "4.5.0"
+>>>>>>> a4001ff68865bb35015d8f9817f2cece41612485
     },
     "monolog/monolog": {
         "version": "2.3.5"

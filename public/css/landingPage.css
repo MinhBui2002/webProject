@@ -1,0 +1,13 @@
+.container{
+    display: flex;
+    flex-wrap: wrap;
+}
+.category_card{
+    margin: 25px 14px;
+    height: 254px;
+    border: 1px solid;
+    text-align: center;
+}
+.category__image{
+    width: 100%;
+}
