@@ -23,9 +23,9 @@
 							{{ user.password }}
 						</td>
 						<td>
-							{% if is_granted('ROLE_ADMIN') %}
+							{% if ('ROLE_ADMIN') in (user.roles) %}
 								Admin
-							{% elseif is_granted('ROLE_CUSTOMER') %}
+							{% elseif ('ROLE_CUSTOMER') in (user.roles) %}
 								Customer
 							{% else %}
 								Anonymous

@@ -73,8 +73,8 @@ class UserController extends AbstractController
                     $userForm->get('plainPassword')->getData()
                 )
             );
-            $user->setRoles(['ROLE_CUSTOMER']);
             $manager = $this->getDoctrine()->getManager();
+            $user->setRoles(['ROLE_CUSTOMER']);
             $manager->persist($user);
             $manager->flush();
             return $this->redirectToRoute("view_all_user");
