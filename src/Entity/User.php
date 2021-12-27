@@ -3,14 +3,18 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
-use Doctrine\ORM\Mapping as ORM;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
+ * @UniqueEntity(fields={"email"}, message="There is already an account with this email")
  */
-class User
+class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     /**
      * @ORM\Id
@@ -20,19 +24,20 @@ class User
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=180, unique=true)
      */
-    private $UserEmail;
+    private $email;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="json")
      */
-    private $UserPassword;
+    private $roles = [];
 
     /**
-     * @ORM\Column(type="string", length=30)
+     * @var string The hashed password
+     * @ORM\Column(type="string")
      */
-    private $UserRole;
+    private $password;
 
     /**
      * @ORM\OneToOne(targetEntity=UserDetail::class, inversedBy="user", cascade={"persist", "remove"})
@@ -55,42 +60,69 @@ class User
         return $this->id;
     }
 
-    public function getUserEmail(): ?string
+    public function getEmail(): ?string
     {
-        return $this->UserEmail;
+        return $this->email;
     }
 
-    public function setUserEmail(string $UserEmail): self
+    public function setEmail(string $email): self
     {
-        $this->UserEmail = $UserEmail;
+        $this->email = $email;
 
         return $this;
     }
 
-    public function getUserPassword(): ?string
+    /**
+     * A visual identifier that represents this user.
+     *
+     * @see UserInterface
+     */
+    public function getUserIdentifier(): string
     {
-        return $this->UserPassword;
+        return (string) $this->email;
     }
 
-    public function setUserPassword(string $UserPassword): self
+    /**
+     * @deprecated since Symfony 5.3, use getUserIdentifier instead
+     */
+    public function getUsername(): string
     {
-        $this->UserPassword = $UserPassword;
+        return (string) $this->email;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function getRoles(): array
+    {
+        $roles = $this->roles;
+        // guarantee every user at least has ROLE_USER
+        $roles[] = 'ROLE_USER';
+
+        return array_unique($roles);
+    }
+
+    public function setRoles(array $roles): self
+    {
+        $this->roles = $roles;
 
         return $this;
     }
 
-    public function getUserRole(): ?string
+    /**
+     * @see PasswordAuthenticatedUserInterface
+     */
+    public function getPassword(): string
     {
-        return $this->UserRole;
+        return $this->password;
     }
 
-    public function setUserRole(string $UserRole): self
+    public function setPassword(string $password): self
     {
-        $this->UserRole = $UserRole;
+        $this->password = $password;
 
         return $this;
     }
-
     public function getUserDetail(): ?UserDetail
     {
         return $this->userDetail;
@@ -131,5 +163,25 @@ class User
         }
 
         return $this;
+    }
+
+    /**
+     * Returning a salt is only needed, if you are not using a modern
+     * hashing algorithm (e.g. bcrypt or sodium) in your security.yaml.
+     *
+     * @see UserInterface
+     */
+    public function getSalt(): ?string
+    {
+        return null;
+    }
+
+    /**
+     * @see UserInterface
+     */
+    public function eraseCredentials()
+    {
+        // If you store any temporary, sensitive data on the user, clear it here
+        // $this->plainPassword = null;
     }
 }
