@@ -33,12 +33,12 @@ class Product
     private $ProductPrice;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="string", length=255, nullable=true)
      */
     private $ProductImage;
 
     /**
-     * @ORM\Column(type="float")
+     * @ORM\Column(type="string", length=255)
      */
     private $ProductDescription;
 
