@@ -24,15 +24,6 @@ class CategoryType extends AbstractType
                 'required' => true
             ] 
         )
-        ->add('Product',EntityType::class,
-             [
-                'label' => 'Product',
-                'required' => true,
-                'choice_label' => 'ProductName',
-                'class' => Product::class,
-                'multiple' => true
-             ]   
-        )
         ->add('Save', SubmitType::class);
     }
 

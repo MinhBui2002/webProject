@@ -11,6 +11,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
 class ProductType extends AbstractType
@@ -45,7 +46,7 @@ class ProductType extends AbstractType
             )
             ->add(
                 'ProductImage',
-                TextType::class,
+                FileType::class,
                 [
                     'label' => 'Image',
                     'data_class' => null,
@@ -56,7 +57,7 @@ class ProductType extends AbstractType
                 'ProductDescription',
                 TextType::class,
                 [
-                    'label' => 'Name',
+                    'label' => 'Description',
                     'required' => true
                 ]
             )
@@ -67,18 +68,9 @@ class ProductType extends AbstractType
                     'label' => 'Category',
                     'required' => true,
                     'class' => Category::class,
-                    'multiple' => false
-                ]
-            )
-            ->add(
-                'orderDetail',
-                EntityType::class,
-            
-                [
-                    'label' => 'Order Detail',
-                    'required' => true,
-                    'class' => OrderDetail::class,
-                    'multiple' => false
+                    'choice_label' => 'CategoryName',
+                    'multiple' => false,
+                    'expanded' => false
                 ]
             )
             ->add('Add', SubmitType::class);
