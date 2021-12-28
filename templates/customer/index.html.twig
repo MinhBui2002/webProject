@@ -15,7 +15,7 @@
             {% for category in categories %}
                     <div class="col col-2">
                         <div class="category_card">
-                        <img class="category__image" src="{{asset('images/cover.png')}}" alt="">
+                        <img class="category__image" src="{{asset('productimg/'~product.ProductImage)}}" alt="">
                         <div>{{category.CategoryName }}</div>  
                         <a type="button" href="{{ path('landing_page_view_category', {'id' : category.id }) }}" class="btn btn-info">Explore more</a>
                         
