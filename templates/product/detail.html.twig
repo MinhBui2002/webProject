@@ -26,15 +26,12 @@
                   </td>
                   <td>{{product.ProductDescription}}</td>
                   <td>
-                  <td>
                      {% if product.category != null %}
-                        <a class="text-decoration-none" href="{{path('category_detail', {'id': product.category.id})}}">
+                        <a class="text-decoration-none" href="{{path('view_category', {'id': product.category.id})}}">
                            {{ product.category.CategoryName }}
                         </a>
                      {% endif %} 
                   </td>
-                  </td>
-                    
                   <td>
                      <a class="btn btn-warning" href="{{ path('edit_product', {'id' : product.id }) }}">
                         EDIT
