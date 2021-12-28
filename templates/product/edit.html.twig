@@ -1,70 +1,9 @@
+{% form_theme productForm 'bootstrap_5_layout.html.twig' %}
 {% extends "base.html.twig" %}
 
 {% block body %}
-<div class="container col-md-6 mt-3 mb-3">
-   <h2 class="text-center">Edit product</h2>
-   <div class="col md-6"></div>
-      {{ form_start (productForm) }}
-         <div class="form-group">
-            {{ form_label (productForm.ProductName)}}
-            {{ form_widget (productForm.ProdcutName ,
-               {
-                  'attr' : {'class' : 'form-control'}
-               })
-            }}
-         </div>
-         <div class="form-group">
-            {{ form_label (productForm.ProductQuantity)}}
-            {{ form_widget (productForm.ProductQuantity ,
-               {
-                  'attr' : {'class' : 'form-control'}
-               })
-            }}
-         </div>
-         <div class="form-group">
-            {{ form_label (productForm.ProductPrice)}}
-            {{ form_widget (productForm.ProductPrice ,
-               {
-                  'attr' : {'class' : 'form-control'}
-               })
-            }}
-         </div>
-         <div class="form-group">
-            {{ form_label (productForm.ProductImage)}}
-            {{ form_widget (productForm.ProductImage ,
-               {
-                  'attr' : {'class' : 'form-control'}
-               })
-            }}
-         </div>
-         <div class="form-group">
-            {{ form_label (productForm.ProductDescription)}}
-            {{ form_widget (productForm.ProductDescription ,
-               {
-                  'attr' : {'class' : 'form-control'}
-               })
-            }}
-         </div>
-         <div class="form-group">
-            {{ form_label (productForm.category)}}
-            {{ form_widget (productForm.category ,
-               {
-                  'attr' : {'class' : 'form-control'}
-               })
-            }}
-         </div>
-         <div class="form-group">
-            {{ form_label (productForm.orderDetail)}}
-            {{ form_widget (productForm.orderDetail ,
-               {
-                  'attr' : {'class' : 'form-control'}
-               })
-            }}
-         </div>
-         <div class="form-group text-center mt-3">
-            <input class="btn btn-primary" type="submit" value="Edit" />
-         </div>
-      {{ form_end (productForm)}}
+   <div class="container-md mt-3 text-center">
+      <h2 class="text-secondary">Edit Product</h2>
+      {{ form (productForm) }}
    </div>
-</div>
 {% endblock %}
