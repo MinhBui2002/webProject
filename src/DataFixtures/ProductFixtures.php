@@ -15,7 +15,7 @@ class ProductFixtures extends Fixture
             $product->setProductName("Product $i");
             $product->setCategory(null);
             $product->setProductPrice(1000+$i);
-            $product->setProductImage("cover.jpg");
+            $product->setProductImage("cover.png");
             $product->setProductQuantity(50+$i);
             $product->setProductDescription("Description $i");
             $manager->persist($product);
