@@ -1,6 +1,7 @@
 {% extends "customerBase.html.twig" %}
 
 
+
 {% block link %}
     <link rel="stylesheet" href="{{asset('css/landingPage.css')}}">  
     <link rel="stylesheet" href="{{asset('css/grid.css')}}">  
@@ -18,10 +19,26 @@
                <div class="product__info">Quantity: {{product.ProductQuantity}}</div> 
                <div class="product__info">Price: {{product.ProductPrice }}</div>   
                <div class="product__info">Description: {{product.ProductDescription}}</div> 
-               <form type="integer" action=""></form>
-               <button type="submit">Add to card</button>
-               </div>
-          
+               
+               {{ form_start(form) }}
+                   {# {% set someValue = true %}
+                    {% if someValue == true %}
+                        
+                        {% do form.OrderDate.setRendered() %}
+                        {% do form.User.setRendered() %}
+                        {% do form.orderDetail.DetailPrice.setRendered() %}
+                        {% do form.orderDetail.DetailTotal.setRendered() %}
+                        {% do form.orderDetail.product.setRendered() %}
+
+                    {% endif %} #}
+               {{ form_end(form) }}
+{# <form method="POST" action="productdetail.html.twig?action=add&product_id=<?php echo {{product.id}}]; ?>">
+               <span style="font-size: 1.4rem;">Quantity:</span> <input type="text" name="quantity" id="" placeholder="Quantity" value="1" style="font-size: 1.4rem;"> <br><br>
+              
+                <input type="hidden" name="hidden_name" value="{{product.ProductName}}">
+                <input type="hidden" name="hidden_price" value="{{product.ProductPrice }}">
+                <input type="submit" name="add_to_cart" style="margin-top:5px;" class="add-cart" value="Add to Cart" />
+          </form> #}
     
    </div>
 {% endblock %}
