@@ -71,17 +71,18 @@ class LandingPageController extends AbstractController
         $form->handleRequest($request);
         $orderDetail = $order->getOrderDetail();
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
-        if ($form->isSubmitted() && $form->isValid()) {
+        $var = $form["orderDetail"]["DetailQuantity"]->getData();
+        if ($form->isSubmitted() && $form->isValid() && $var <= ($product->getProductQuantity())) {
             $order->setUser($this->security->getUser());
             $order->setOrderDate(new \DateTime());
-            $var = $form["orderDetail"]["DetailQuantity"]->getData();
             $orderDetail->setDetailPrice($product->getProductPrice());
             $orderDetail->setDetailTotal($product->getProductPrice() * $var);
             $orderDetail->addProduct($product);
+            $product->setProductQuantity($product->getProductQuantity() - $var);
             $manager = $this->getDoctrine()->getManager();
             $manager->persist($order, $orderDetail);
             $manager->flush();
-            return $this->redirectToRoute("landing_page_view_product",array('id'=>$id));
+            return $this->redirectToRoute("landing_page_view_product", array('id' => $id));
         }
         return $this->render(
             "customer/productDetail.html.twig",
