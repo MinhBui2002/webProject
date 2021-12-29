@@ -22,9 +22,7 @@ class CartController extends AbstractController
      */
     public function index(): Response
     {
-        $orderID = $this->security->getUser();
-        // $orders = $this->getDoctrine()->getRepository(Order::class)->find($orderID);
-        $orders = $this->getDoctrine()->getRepository(Order::class)->findAll();
+        $orders = $this->security->getUser()->getOrders();
         return $this->render('cart/index.html.twig', [
             'orders' => $orders,
         ]);
