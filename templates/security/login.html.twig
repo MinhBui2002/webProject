@@ -1,8 +1,6 @@
-{% extends 'base.html.twig' %}
-
-{% block title %}Log in!
+{% block stylesheets %}
+        <link href="{{ asset('css/login.css') }}" type="text/css" rel="stylesheet" />
 {% endblock %}
-
 {% block body %}
 	<form method="post">
 		{% if error %}
@@ -17,28 +15,29 @@
 			</div>
 		{% endif %}
 
-		<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-		<label for="inputEmail">Email</label>
-		<input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-		<label for="inputPassword">Password</label>
-		<input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
+		<div class="wrapper fadeInDown">
+			<div id="formContent">
+				<!-- Tabs Titles -->
+				<h2 class="active"> Sign In </h2>
 
-		<input
-		type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+				<!-- Icon -->
+				<div class="fadeIn first">
+					<img src="images/usericon.png" id="icon" alt="User Icon" />
+				</div>
 
-		{#
-		        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-		        See https://symfony.com/doc/current/security/remember_me.html
-		
-		        <div class="checkbox mb-3">
-		            <label>
-		                <input type="checkbox" name="_remember_me"> Remember me
-		            </label>
-		        </div>
-		    #}
+				<!-- Login Form -->
+				<form>
+					<input type="text" id="inputEmail" class="fadeIn second" name="email" placeholder="login">
+					<input type="password" id="inputPassword" class="fadeIn third" name="password" placeholder="password">
+					<input type="submit" class="fadeIn fourth" value="Log In">
+				</form>
+				<input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
 
-		<button class="btn btn-lg btn-primary" type="submit">
-			Sign in
-		</button>
+				<div id="formFooter">
+					<a class="underlineHover" href="/register">Register new account</a>
+				</div>
+
+			</div>
+		</div>
 	</form>
 {% endblock %}
