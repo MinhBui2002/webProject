@@ -15,7 +15,6 @@
                      {% for product in category.Product %}
                 <div class="col col-2"> 
                      <div class="category_card">
-                      <img class="product__img" src="{{ asset('productimg/'~product.ProductImage) }}" width="100" height="120"> 
                   
                   <a  class="btn btn-info" href="{{ path('landing_page_view_product', {'id' : product.id }) }}">
                       
