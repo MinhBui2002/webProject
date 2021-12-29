@@ -41,10 +41,11 @@ class OrderDetail
     private $OrderEntity;
 
     /**
-     * @ORM\OneToMany(targetEntity=Product::class, mappedBy="orderDetail")
+     * @ORM\ManyToMany(targetEntity=Product::class, inversedBy="orderDetails")
      */
     private $Product;
 
+    
     public function __construct()
     {
         $this->Product = new ArrayCollection();
@@ -115,7 +116,6 @@ class OrderDetail
     {
         if (!$this->Product->contains($product)) {
             $this->Product[] = $product;
-            $product->setOrderDetail($this);
         }
 
         return $this;
@@ -123,13 +123,10 @@ class OrderDetail
 
     public function removeProduct(Product $product): self
     {
-        if ($this->Product->removeElement($product)) {
-            // set the owning side to null (unless already changed)
-            if ($product->getOrderDetail() === $this) {
-                $product->setOrderDetail(null);
-            }
-        }
+        $this->Product->removeElement($product);
 
         return $this;
     }
+
+    
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\ProductRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -48,10 +50,16 @@ class Product
     private $category;
 
     /**
-     * @ORM\ManyToOne(targetEntity=OrderDetail::class, inversedBy="Product")
-     * @ORM\JoinColumn(onDelete="CASCADE")
+     * @ORM\ManyToMany(targetEntity=OrderDetail::class, mappedBy="Product")
      */
-    private $orderDetail;
+    private $orderDetails;
+
+    public function __construct()
+    {
+        $this->orderDetails = new ArrayCollection();
+    }
+
+    
 
     public function getId(): ?int
     {
@@ -131,15 +139,31 @@ class Product
         return $this;
     }
 
-    public function getOrderDetail(): ?OrderDetail
+    /**
+     * @return Collection|OrderDetail[]
+     */
+    public function getOrderDetails(): Collection
     {
-        return $this->orderDetail;
+        return $this->orderDetails;
     }
 
-    public function setOrderDetail(?OrderDetail $orderDetail): self
+    public function addOrderDetail(OrderDetail $orderDetail): self
     {
-        $this->orderDetail = $orderDetail;
+        if (!$this->orderDetails->contains($orderDetail)) {
+            $this->orderDetails[] = $orderDetail;
+            $orderDetail->addProduct($this);
+        }
 
         return $this;
     }
+
+    public function removeOrderDetail(OrderDetail $orderDetail): self
+    {
+        if ($this->orderDetails->removeElement($orderDetail)) {
+            $orderDetail->removeProduct($this);
+        }
+
+        return $this;
+    }
+
 }
