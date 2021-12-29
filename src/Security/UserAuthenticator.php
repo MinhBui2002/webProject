@@ -54,7 +54,7 @@ class UserAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
         if ($token->getUser()->isAdmin()) {
-            return new RedirectResponse($this->urlGenerator->generate('view_all_user'));
+            return new RedirectResponse($this->urlGenerator->generate('admin_page'));
             throw new \Exception('TODO: provide a valid redirect inside ' . __FILE__);
         } else {
             return new RedirectResponse($this->urlGenerator->generate('landing_page_category'));
