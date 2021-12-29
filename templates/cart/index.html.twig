@@ -16,6 +16,7 @@
                
             </tr>
          </thead>
+          {% set sum = 0 %}
          <tbody>
             {% for order in orders %}
                <tr>
@@ -27,14 +28,23 @@
                       <td>{{product.ProductName}}</td>
                      
                   {% endfor %}
-                  
+                 {% set sum = order.orderDetail.DetailTotal + sum %}
+
                   <td>
                      <a class="btn btn-danger" href="{{ path('cart_delete_order_by_id', {'id' : order.id }) }}">
                         DELETE
                      </a>
                   </td>
                </tr>
-            {% endfor %}    
+            {% endfor %}  
+            <tr>
+               <td></td>
+               <td></td>
+               <td></td>
+             <td> Total payment : {{sum}}</td>
+               <td></td>
+               <td></td>
+            </tr>  
          </tbody> 
       </table>
 {% endblock %}
