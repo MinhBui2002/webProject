@@ -12,11 +12,11 @@ class UserFixtures extends Fixture
     {
         // $product = new Product();
         // $manager->persist($product);
-        for($i = 0;$i <= 30; $i++){
+        for ($i = 0; $i <= 30; $i++) {
             $user = new User;
             $user->setEmail("$i@gmail.com");
             $user->setPassword("123456");
-            $user->setRoles('ROLE_CUSTOMER ');
+            $user->setRoles(['ROLE_CUSTOMER']);
             $manager->persist($user);
         }
 

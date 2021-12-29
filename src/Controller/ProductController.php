@@ -15,9 +15,11 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/viewall/" , name = "view_all_product")
      */
-    public function viewAllProduct () {
+    public function viewAllProduct()
+    {
         $products = $this->getDoctrine()->getRepository(Product::class)->findAll();
-        return $this->render("product/index.html.twig",
+        return $this->render(
+            "product/index.html.twig",
             [
                 'products' => $products
             ]
@@ -27,23 +29,26 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/view/{id}", name = "view_product")
      */
-    public function viewProduct ($id) {
+    public function viewProduct($id)
+    {
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
         if ($product != null) {
-            return $this->render("product/detail.html.twig",
-            [
-                'product' => $product
-            ]
+            return $this->render(
+                "product/detail.html.twig",
+                [
+                    'product' => $product
+                ]
             );
         } else {
             return $this->redirectToRoute("view_all_product");
-        }     
+        }
     }
 
     /**
      * @Route("/product/delete/{id}", name = "delete_product_by_id")
      */
-    public function deleteProduct ($id) {
+    public function deleteProduct($id)
+    {
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
         if ($product != null) {
             $manager = $this->getDoctrine()->getManager();
@@ -56,7 +61,8 @@ class ProductController extends AbstractController
     /**
      * @Route("/product/add", name = "add_product")
      */
-    public function addProduct (Request $request) {
+    public function addProduct(Request $request)
+    {
         $product = new Product();
         $productForm = $this->createForm(productType::class, $product);
         $productForm->handleRequest($request);
@@ -66,12 +72,13 @@ class ProductController extends AbstractController
             $imgName = uniqid();
             $imgExtension = $image->guessExtension();
             $imageName = $imgName . "." . $imgExtension;
-             try {
-             $image->move(
-                 $this->getParameter('product_image'), $imageName
-             );  
+            try {
+                $image->move(
+                    $this->getParameter('product_image'),
+                    $imageName
+                );
             } catch (FileException $e) {
-               throwException($e);
+                throwException($e);
             }
             $product->setProductImage($imageName);
             $manager = $this->getDoctrine()->getManager();
@@ -79,16 +86,19 @@ class ProductController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute("view_all_product");
         }
-        return $this->renderForm("product/add.html.twig",
-        [
-            'productForm' => $productForm
-        ]);
+        return $this->renderForm(
+            "product/add.html.twig",
+            [
+                'productForm' => $productForm
+            ]
+        );
     }
 
     /**
      * @Route("/product/edit/{id}", name = "edit_product")
      */
-    public function editProduct (Request $request, $id) {
+    public function editProduct(Request $request, $id)
+    {
         $product = $this->getDoctrine()->getRepository(Product::class)->find($id);
         $productForm = $this->createForm(productType::class, $product);
         $productForm->handleRequest($request);
@@ -112,9 +122,11 @@ class ProductController extends AbstractController
             $manager->flush();
             return $this->redirectToRoute("view_all_product");
         }
-        return $this->renderForm("product/edit.html.twig",
-        [
-            'productForm' => $productForm
-        ]);
+        return $this->renderForm(
+            "product/edit.html.twig",
+            [
+                'productForm' => $productForm
+            ]
+        );
     }
 }
