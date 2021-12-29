@@ -2,29 +2,30 @@
 
 
 {% block link %}
-    <link rel="stylesheet" href="{{asset('css/landingPage.css')}}">  
-    <link rel="stylesheet" href="{{asset('css/grid.css')}}">  
+    <link href="{{asset('css/landingPage.css')}}" rel="stylesheet">  
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
 {% endblock %}
 {% block body %}
-  
-   <div class="grid wide">
-          
-         
-         
-               <div class="row">
-            {% for category in categories %}
-                    <div class="col col-2">
-                        <div class="category_card">
-                        <div>{{category.CategoryName }}</div>  
-                        <a type="button" href="{{ path('landing_page_view_category', {'id' : category.id }) }}" class="btn btn-info">Explore more</a>
-                        
-                    </div>
-                </div>
-                  
-            
-            {% endfor %}    
-               </div>
-          
-    
-   </div>
+  <section id="banner" class="d-flex justify-content-center align-items-center">
+    <div class="container position-relative" >
+      <h1>Shopping Online<br>Quality Product<br>Fast Delivery</h1>
+    </div>
+  </section><!-- End banner -->
+  <main id="main">
+    <!-- ======= About Section ======= -->
+    <section class="about fadeInDown">
+      <div class="container">
+          <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
+            <h1>Web thương mại điện tử vjp pro</h1>
+            <p class="fst-italic">
+              Ở đây chúng tôi bán những thứ siêu cấp vjp pro
+            </p>
+          </div>
+      </div>
+    </section>
+    <section class="showsample">
+        <img class="sampleimg fadeIn first" src="https://vcdn1-sohoa.vnecdn.net/2021/09/15/Capto-Capture-2021-09-14-01-24-25-PM-1631645229.jpg?w=1200&h=0&q=100&dpr=1&fit=crop&s=z8SnQujqH_KuKHDf1MuQ_g" alt="">
+        <img class="sampleimg fadeIn second" src="https://cf.shopee.vn/file/3b67cf8eb86dd8a0f9ac6fdaa7fd943f" alt="">
+        <img class="sampleimg fadeIn third" src="https://cdn.tgdd.vn/Files/2021/10/28/1394064/tai-nghe-airb-pro-1-_1647x1334-800-resize.jpg" alt="">
+    </section><!-- End Counts Section -->
 {% endblock %}
