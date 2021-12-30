@@ -2,8 +2,9 @@
 
 
 {% block link %}
-    <link rel="stylesheet" href="{{asset('css/categoryDetail.css')}}"> 
+
     <link rel="stylesheet" href="{{asset('css/grid.css')}}">  
+    <link rel="stylesheet" href="{{asset('css/productDetail.css')}}">
 {% endblock %}
 {% block body %}
   
@@ -12,20 +13,17 @@
          
          
                <div class="row">
-                     {% for product in category.Product %}
-                <div class="col c-6 m-4 l-2"> 
-                     <div class="category_card">
-                        <img class="product_img" src="{{ asset('productimg/'~product.ProductImage) }}" alt="">
-                        <div class="product-info">Quantity: {{product.ProductQuantity}}</div>
-                        <div class="product-info">Price: {{product.ProductPrice}}$</div>
-                        <a  class="button-9 link-to-product" href="{{ path('landing_page_view_product', {'id' : product.id }) }}">
-                      
-                     Buy now
-                  </a>
-                     </div>
-                       
-                  </div>    
-                     {% endfor %}
+               <div class="product__wrapper">
+                    <img class="product__img" src="{{ asset('productimg/'~product.ProductImage) }}"> 
+                  
+               <div class ="info-wrapper">
+                    <div class="product__info">Name:  {{product.ProductName}}</div> 
+                    <div class="product__info">Quantity: {{product.ProductQuantity}} units</div> 
+                    <div class="product__info">Price: {{product.ProductPrice }} $</div>   
+                    <div class="product__info">Description: {{product.ProductDescription}}</div> 
+                    <div class="product__info">Quantity: {{form(form)}}</div> 
+               </div>
+               </div>
                </div>
           
     
