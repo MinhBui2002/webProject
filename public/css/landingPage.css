@@ -2,7 +2,6 @@
   display: flex;
   flex-wrap: wrap;
 }
-
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
@@ -11,6 +10,10 @@ body {
 a {
   color: #5fcf80;
   text-decoration: none;
+}
+
+div.container#slogan {
+  justify-content: center;
 }
 
 a:hover {
@@ -67,8 +70,11 @@ h6 {
 }
 
 section.about {
-  text-align: center;
-  margin: 0 600px;
+  justify-content: center;
+  text-align: justify;
+  margin: auto;
+  width: 50%;
+  padding: 10px;
 }
 
 section.about h1 {
