@@ -19,7 +19,7 @@
 			<div class="fullWidth header">
 				<div class="container">
 					<div class="col-xs-12 col-sm-2 col-md-3 col-md-offset-1 col-lg-4 col-lg-offset-1 header-logo header-logo-name">
-						<a href="#" class="header-logo-name">Web name</a>
+						<a href="#" class="header-logo-name">Tech Trade</a>
 					</div>
 					<div class="col-xs-12 col-sm-10 col-md-8 col-lg-6 header-nav">
 						<ul>
@@ -30,8 +30,10 @@
 								<a href="#" class="header-nav-link header-nav-top-link">Category</a>
 								<ul>
 									{% for category in categories %}
-                  						<li><a href="{{path('view_category', {'id':category.id})}}" class="header-nav-link header-nav-sub-link">{{category.CategoryName}}</a></li>
-                     				{% endfor %}
+										<li>
+											<a href="{{path('view_category', {'id':category.id})}}" class="header-nav-link header-nav-sub-link">{{category.CategoryName}}</a>
+										</li>
+									{% endfor %}
 								</ul>
 							</li>
 							<li>
@@ -40,31 +42,24 @@
 							<li>
 								<form action="{{path('search_product_by_name')}}" method="POST">
 									<input type="search" name="productName" placeholder="Type..." class="search-input">Search</button>
-								</form>
 							</li>
-							<li>
-								<a href="{{path('app_logout')}}" class="header-nav-link header-nav-top-link">Logout</a>
-							</li>
-						</ul>
-					</div>
-				</div>
+						</form>
+					</li>
+					<li>
+						<a href="{{path('app_logout')}}" class="header-nav-link header-nav-top-link">Logout</a>
+					</li>
+				</ul>
 			</div>
-		{% endblock %}
-		{% block body %}
-		{% endblock %}
-		{% block footer %}
-        <footer>
-        <div class="footer-content">
-            <h3>Đéo Có Tên</h3>
-            <p>Dòng này viết cái gì đấy cho thật dài nhưng thật ra nó sẽ lặp lại vì đéo biết viết gì.
-			Dòng này viết cái gì đấy cho thật dài nhưng thật ra nó sẽ lặp lại vì đéo biết viết gì.
-			 </p>
-        </div>
-        <div class="footer-bottom">
-            <p>copyright &copy; <a href="#">Đéo có tên</a>  </p>
-        </div>
-
-    </footer>
-		{% endblock %}
-	</body>
-</html>
+		</body>
+	</html>
+</div></div>{% endblock %}{% block body %}{% endblock %}{% block footer %}<footer>
+<div class="footer-content">
+	<h3>Tech Trade</h3>
+	<p>Developed with Symfony 5 framework
+	</p>
+</div>
+<div class="footer-bottom">
+	<p>copyright &copy;
+		<a href="#">Tech Trade</a>
+	</p>
+</div></footer>{% endblock %}</body></html>
