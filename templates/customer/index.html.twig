@@ -20,7 +20,14 @@
 				<div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
 					<h1>E-commerce website</h1>
 					<p class="fst-italic">
-						For most up-to-date hightech devices
+						<ul>
+						{% for category in categories %}
+                       <li><a href="{{ path('view_category', {'id' : category.id }) }}" class="bannerlink">
+                           {{ category.categoryName }}</li>
+                       </a>
+                       <br>
+                     {% endfor %}
+						</ul>
 					</p>
 				</div>
 			</div>
@@ -30,5 +37,4 @@
 			<img class="sampleimg fadeIn second" src="https://cf.shopee.vn/file/3b67cf8eb86dd8a0f9ac6fdaa7fd943f" alt="">
 			<img class="sampleimg fadeIn third" src="https://cdn.tgdd.vn/Files/2021/10/28/1394064/tai-nghe-airb-pro-1-_1647x1334-800-resize.jpg" alt="">
 		</section>
-		<!-- End Counts Section -->
 	{% endblock %}
