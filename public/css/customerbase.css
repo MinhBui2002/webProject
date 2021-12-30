@@ -205,12 +205,14 @@ footer {
     font-weight: 500;
     text-transform: capitalize;
     line-height: 0rem;
+    margin-top: -10px;
+    margin-bottom: 20px;
 }
 
 .footer-content p {
     max-width: 500px;
     margin: 0 auto;
-    line-height: 20px;
+    line-height: 25px;
     font-size: 14px;
     color: #cacdd2;
 }
