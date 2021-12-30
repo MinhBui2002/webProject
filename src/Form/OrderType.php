@@ -36,7 +36,7 @@ class OrderType extends AbstractType
         [
             'label' => 'User',
             'required' => true,
-            'choice_label' => 'UserEmail',
+            'choice_label' => 'email',
             'class' => User::class,
             'multiple' => false
         ])

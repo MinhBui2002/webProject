@@ -8,11 +8,8 @@
                <th>Order ID</th>
                <th>Order date</th>
                <th>User</th>
-               <th>Detail price</th>
-               <th>Detai quantity</th>
-               <th>Detail total</th>
-               
-               <th>Menu</th>
+               <th>Price</th>
+               <th>Product</th>
             </tr>
          </thead>
          <tbody>
@@ -20,9 +17,14 @@
                   <td>{{ order.id }} </td>
                   <td>{{ order.OrderDate | date('d/m/Y')}} </td>
                   <td>{{order.User.UserDetail.UserName}}</td>
-                   <td>{{order.OrderDetail.DetailPrice}}</td> 
-                   <td>{{order.OrderDetail.DetailQuantity}}</td>
-                   <td>{{order.OrderDetail.DetailTotal}}</td>
+                  <td>{{order.OrderDetail.DetailTotal}}</td>
+                  <td>
+                  <ul>
+                  <li>{%for product in order.OrderDetail.Product %}<a href="{{path('view_product', {'id':product.id})}}">
+                   {{product.ProductName}}</a><br>
+                   {% endfor %}</li>
+                  </ul> 
+                  </td>
                     
                   <td>
                      <a class="btn btn-warning" href="{{ path('edit_order', {'id' : order.id }) }}">
