@@ -8,7 +8,7 @@ body {
     color: #444444;
 }
 
-a {
+a.categorylink {
     color: rgb(0, 0, 0);
     text-decoration: none;
     font-family: "Poppins", sans-serif;
@@ -16,11 +16,11 @@ a {
     font-weight: 700;
 }
 
-div.container#slogan {
+*/ div.container#slogan {
     justify-content: center;
 }
 
-a:hover {
+a.categorylink:hover {
     color: rgb(105, 102, 102);
     font-size: 40px;
 }
@@ -76,13 +76,16 @@ h6 {
 section.about {
     justify-content: center;
     text-align: justify;
-    margin: auto;
+    margin: auto 550px;
     width: 50%;
     padding: 10px;
 }
 
 section.about h1 {
     font-size: 40px;
+    justify-content: center;
+    display: flex;
+    align-items: center;
 }
 
 section.about p {
