@@ -38,8 +38,8 @@
 								<a href="{{path('view_cart')}}" class="header-nav-link header-nav-top-link">Cart</a>
 							</li>
 							<li>
-								<form>
-									<button class="btn btn-outline-success header-nav-link header-nav-top-link search-container" type="submit"><input type="search" name="search" placeholder="Type..." class="search-input">Search</button>
+								<form action="{{path('search_product_by_name')}}" method="POST">
+									<input type="search" name="productName" placeholder="Type..." class="search-input">Search</button>
 								</form>
 							</li>
 							<li>
