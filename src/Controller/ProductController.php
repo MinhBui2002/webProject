@@ -104,7 +104,7 @@ class ProductController extends AbstractController
         $productForm->handleRequest($request);
 
         if ($productForm->isSubmitted() && $productForm->isValid()) {
-            $file = $productForm['image']->getData();
+            $file = $productForm['ProductImage']->getData();
             if ($file != null) {
                 $image = $product->getProductImage();
                 $imgName = uniqid();
