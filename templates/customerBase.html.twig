@@ -7,8 +7,6 @@
 				My Symfony Website
 			{% endblock %}
 		</title>
-		{# Run `composer require symfony/webpack-encore-bundle`
-								           and uncomment the following Encore helpers to start using Symfony UX #}
 		{% block stylesheets %}
 			<!-- CSS only -->
 			<link href="{{ asset('css/customerbase.css') }}" rel="stylesheet" texttype="text/css">
@@ -31,30 +29,17 @@
 							<li>
 								<a href="#" class="header-nav-link header-nav-top-link">Category</a>
 								<ul>
-									<li><a href="#" class="header-nav-link header-nav-sub-link">Category 1</a></li>
-									<li><a href="#" class="header-nav-link header-nav-sub-link">Category 2</a></li>
-									<li><a href="#" class="header-nav-link header-nav-sub-link">Category 3</a></li>
-									<li><a href="#" class="header-nav-link header-nav-sub-link">Category 4</a></li>
+									{% for category in categories %}
+                  						<li><a href="{{path('view_category', {'id':category.id})}}" class="header-nav-link header-nav-sub-link">{{category.CategoryName}}</a></li>
+                     				{% endfor %}
 								</ul>
-							</li>
-							<li>
-								<a href="#" class="header-nav-link header-nav-top-link">Product</a>
-								<ul>
-									<li><a href="#" class="header-nav-link header-nav-sub-link">Product 1</a></li>
-									<li><a href="#" class="header-nav-link header-nav-sub-link">Product 2</a></li>
-									<li><a href="#" class="header-nav-link header-nav-sub-link">Product 3</a></li>
-									<li><a href="#" class="header-nav-link header-nav-sub-link">More Product...</a></li>
-								</ul>
-							</li>
-							<li>
-								<a href="#" class="header-nav-link header-nav-top-link">User</a>
 							</li>
 							<li>
 								<a href="{{path('view_cart')}}" class="header-nav-link header-nav-top-link">Cart</a>
 							</li>
 							<li>
-								<form>
-									<button class="btn btn-outline-success header-nav-link header-nav-top-link search-container" type="submit"><input type="search" name="search" placeholder="Type..." class="search-input">Search</button>
+								<form action="{{path('search_product_by_name')}}" method="POST">
+									<input type="search" name="productName" placeholder="Type..." class="search-input">Search</button>
 								</form>
 							</li>
 							<li>
@@ -65,7 +50,21 @@
 				</div>
 			</div>
 		{% endblock %}
-		{% block body %}{% endblock %}
-		{% block footer %}{% endblock %}
+		{% block body %}
+		{% endblock %}
+		{% block footer %}
+        <footer>
+        <div class="footer-content">
+            <h3>Đéo Có Tên</h3>
+            <p>Dòng này viết cái gì đấy cho thật dài nhưng thật ra nó sẽ lặp lại vì đéo biết viết gì.
+			Dòng này viết cái gì đấy cho thật dài nhưng thật ra nó sẽ lặp lại vì đéo biết viết gì.
+			 </p>
+        </div>
+        <div class="footer-bottom">
+            <p>copyright &copy; <a href="#">Đéo có tên</a>  </p>
+        </div>
+
+    </footer>
+		{% endblock %}
 	</body>
 </html>

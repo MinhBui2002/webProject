@@ -47,4 +47,18 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     */
+
+     /**
+     * @return Product[]
+     */
+    public function searchByTitle ($productName) {
+        return $this->createQueryBuilder('product')
+                    ->andWhere('product.ProductName LIKE :productName')
+                    ->setParameter('productName', '%' . $productName . '%')
+                    ->orderBy('product.id','asc')
+                    ->setMaxResults(5)
+                    ->getQuery()
+                    ->getResult()
+                    ;
+    }
 }

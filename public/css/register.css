@@ -301,6 +301,7 @@ input[type=number]:placeholder {
 }
 
 .dk {
+    font-family: 'Roboto', sans-serif;
     background: #F8F8F8;
     border: 0.5px #DFDFDF;
     color: #717171;
