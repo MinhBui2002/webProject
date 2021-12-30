@@ -92,4 +92,17 @@ class LandingPageController extends AbstractController
             ]
         );
     }
+    
+    
+    /**
+     * @Route("/customer/product/search", name="search_product_by_name")
+     */
+    public function searchProductByName (ProductRepository $productRepository, Request $request) {
+        $productName = $request->get("productName");
+        $products = $productRepository->searchByTitle($productName);
+        return $this->render("customer/categoryDetail.html.twig",
+        [
+            'products' => $products
+        ]);
+    }
 }
