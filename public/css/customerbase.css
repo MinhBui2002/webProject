@@ -148,7 +148,7 @@ input[type="submit"] {
 }
 
 .search-container:hover>.search-input {
-    width: 300px;
+    width: 200px;
 }
 
 .search-container .search-input {
