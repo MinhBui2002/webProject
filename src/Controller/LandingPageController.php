@@ -7,9 +7,9 @@ use App\Entity\Order;
 use App\Entity\Product;
 use App\Form\OrderType;
 use App\Entity\Category;
+use App\Repository\ProductRepository;
 use App\Entity\OrderDetail;
 use App\Form\OrderCustomerType;
-use App\Repository\ProductRepository;
 use App\Doctrine\Persistence\ObjectManager;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Security\Core\Security;
@@ -38,6 +38,20 @@ class LandingPageController extends AbstractController
         $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
         return $this->render(
             "customer/index.html.twig",
+            [
+                'categories' => $categories
+            ]
+        );
+    }
+
+    /**
+     * @Route("/customer/headerPage/", name="landing_page_category_header")
+     */
+    public function viewAllCategoryHeader()
+    {
+        $categories = $this->getDoctrine()->getRepository(Category::class)->findAll();
+        return $this->render(
+            "customerBase.html.twig",
             [
                 'categories' => $categories
             ]
@@ -93,20 +107,17 @@ class LandingPageController extends AbstractController
             ]
         );
     }
-
-
+    
+    
     /**
      * @Route("/customer/product/search", name="search_product_by_name")
      */
-    public function searchProductByName(ProductRepository $productRepository, Request $request)
-    {
+    public function searchProductByName (ProductRepository $productRepository, Request $request) {
         $productName = $request->get("productName");
         $products = $productRepository->searchByTitle($productName);
-        return $this->render(
-            "customer/categoryDetail.html.twig",
-            [
-                'products' => $products
-            ]
-        );
+        return $this->render("customer/searchProduct.html.twig",
+        [
+            'products' => $products
+        ]);
     }
 }
