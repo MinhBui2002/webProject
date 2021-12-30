@@ -1,50 +1,54 @@
 {% extends 'customerBase.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Hello CartController!
+{% endblock %}
 
 {% block body %}
 
-<table class="table text-center">
-         <thead>
-            <tr>
-               <th>Order ID</th>
-               <th>Detail Price</th>
-                <th>Detail Quantiy</th>
-                <th>Detail Total</th>
-               <th>Product</th>
-               <th>Action</th> 
-               
-            </tr>
-         </thead>
-          {% set sum = 0 %}
-         <tbody>
-            {% for order in orders %}
-               <tr>
-                  <td>{{order.id }} </td>
-                  <td>{{order.orderDetail.DetailPrice}}</td>
-                  <td>{{order.orderDetail.DetailQuantity}}</td>
-                  <td>{{order.orderDetail.DetailTotal}}</td>
-                  {% for product in order.orderDetail.Product %}
-                      <td>{{product.ProductName}}</td>
-                     
-                  {% endfor %}
-                 {% set sum = order.orderDetail.DetailTotal + sum %}
+	<table class="table text-center">
+		<thead>
+			<tr>
+				<th>Order ID</th>
+				<th>Detail Price</th>
+				<th>Detail Quantiy</th>
+				<th>Detail Total</th>
+				<th>Product</th>
+				<th>Action</th>
 
-                  <td>
-                     <a class="btn btn-danger" href="{{ path('cart_delete_order_by_id', {'id' : order.id }) }}">
-                        DELETE
-                     </a>
-                  </td>
-               </tr>
-            {% endfor %}  
-            <tr>
-               <td></td>
-               <td></td>
-               <td></td>
-             <td> Total payment : {{sum}}</td>
-               <td></td>
-               <td></td>
-            </tr>  
-         </tbody> 
-      </table>
+			</tr>
+		</thead>
+		{% set sum = 0 %}
+		<tbody>
+			{% for order in orders %}
+				<tr>
+					<td>{{order.id }}
+					</td>
+					<td>{{order.orderDetail.DetailPrice}}</td>
+					<td>{{order.orderDetail.DetailQuantity}}</td>
+					<td>{{order.orderDetail.DetailTotal}}</td>
+					{% for product in order.orderDetail.Product %}
+						<td>{{product.ProductName}}</td>
+
+					{% endfor %}
+					{% set sum = order.orderDetail.DetailTotal + sum %}
+
+					<td>
+						<a class="btn btn-danger" href="{{ path('cart_delete_order_by_id', {'id' : order.id }) }}">
+							DELETE
+						</a>
+					</td>
+				</tr>
+			{% endfor %}
+			<tr>
+				<td></td>
+				<td></td>
+				<td></td>
+				<td>
+					Total payment :
+					{{sum}}</td>
+				<td></td>
+				<td></td>
+			</tr>
+		</tbody>
+	</table>
 {% endblock %}
