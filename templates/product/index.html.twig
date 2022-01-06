@@ -3,6 +3,9 @@
 {% block body %}
    <div class="container">
       <a class="btn btn-outline-success mt-3"  href="{{ path ('add_product')}}">Add New Product</a>
+      <form action="{{path('search_product_by_name')}}" method="POST">
+		<div class="btn btn-outline-success header-nav-link header-nav-top-link search-container" type="submit">
+		<input type="search" name="productName" placeholder="Type..." class="search-input"></div></form>
       <table class="table text-center">
          <thead>
             <tr>

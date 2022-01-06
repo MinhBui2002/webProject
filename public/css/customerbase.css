@@ -1,6 +1,7 @@
 body {
-    margin: 0;
-    padding: 0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
 }
 
 .header {
@@ -185,7 +186,8 @@ input[type="submit"] {
 }
 
 footer {
-    position: relative;
+    position: absolute;
+    bottom: 0;
     background: #111;
     height: auto;
     width: 100vw;

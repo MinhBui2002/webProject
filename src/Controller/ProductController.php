@@ -5,6 +5,7 @@ namespace App\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\File\Exception\FileException;
 use Symfony\Component\HttpFoundation\Request;
+use App\Repository\ProductRepository;
 use Symfony\Component\Routing\Annotation\Route;
 use function PHPUnit\Framework\throwException;
 use App\Entity\Product;
@@ -126,6 +127,21 @@ class ProductController extends AbstractController
             "product/edit.html.twig",
             [
                 'productForm' => $productForm
+            ]
+        );
+    }
+
+    /**
+     * @Route("/product/search", name="search_product_by_name")
+     */
+    public function searchProductByName(ProductRepository $productRepository, Request $request)
+    {
+        $productName = $request->get("productName");
+        $products = $productRepository->searchByTitle($productName);
+        return $this->render(
+            "product/index.html.twig",
+            [
+                'products' => $products
             ]
         );
     }

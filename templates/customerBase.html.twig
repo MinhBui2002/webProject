@@ -35,15 +35,16 @@
 								<form action="{{path('search_product_by_name')}}" method="POST">
 									<div class="btn btn-outline-success header-nav-link header-nav-top-link search-container" type="submit">
 										<input type="search" name="productName" placeholder="Type..." class="search-input">Search</div>
-								</li>
 							</li>
-						</form>
-					</li>
-				</form>
-			</li>
-			<li>
-				<a href="{{path('app_logout')}}" class="header-nav-link header-nav-top-link">Logout</a>
-			</li>
-		</body>
-	</html>
-</ul></div></body></html></div></div>{% endblock %}{% block body %}{% endblock %}{% block footer %}<footer style="padding-top: 50px;"><div class="footer-content"><h3>Tech Trade</h3><p style="margin-top: 5px;">Developed with Symfony 5 framework</p></div><div class="footer-bottom"><p>copyright &copy;<a href="#">Tech Trade</a></p></div></footer>{% endblock %}</body></html>
+							<li>
+								<a href="{{path('app_logout')}}" class="header-nav-link header-nav-top-link">Logout</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		{% block body %}{% endblock %}
+		{% block footer %}<footer style="padding-top: 50px;"><div class="footer-content"><h3>Tech Trade</h3><p style="margin-top: 5px;">Developed with Symfony 5 framework</p></div><div class="footer-bottom"><p>copyright &copy;<a href="#">Tech Trade</a></p></div></footer>{% endblock %}</body></html>
+	</body>
+
