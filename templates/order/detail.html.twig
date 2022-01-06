@@ -7,25 +7,27 @@
             <tr>
                <th>Order ID</th>
                <th>Order date</th>
-               <th>User</th>
-               <th>Price</th>
+               <th>Detail price</th>
+               <th>Detai quantity</th>
+               <th>Detail total</th>
+               <th>User name</th>
                <th>Product</th>
+               <th>Menu</th>
             </tr>
          </thead>
          <tbody>
+               {% set sum = 0 %}
                <tr>
                   <td>{{ order.id }} </td>
                   <td>{{ order.OrderDate | date('d/m/Y')}} </td>
-                  <td>{{order.User.UserDetail.UserName}}</td>
-                  <td>{{order.OrderDetail.DetailTotal}}</td>
-                  <td>
-                  <ul>
-                  <li>{%for product in order.OrderDetail.Product %}<a href="{{path('view_product', {'id':product.id})}}">
-                   {{product.ProductName}}</a><br>
-                   {% endfor %}</li>
-                  </ul> 
-                  </td>
-                    
+                   <td>{{order.OrderDetail.DetailPrice}}</td> 
+                   <td>{{order.OrderDetail.DetailQuantity}}</td>
+                   <td>{{order.OrderDetail.DetailTotal}}</td>
+                  <td><a href="{{path('view_user',{'id': order.User.id})}}">{{order.User.UserDetail.UserName}}</a></td>
+                  <td>{%for product in order.orderDetail.Product %}
+                  <a href="{{ path('view_product', {'id' : product.id }) }}"> {{product.ProductName}}</a><br>
+                   {% set sum = product.ProductPrice + sum%}
+                   {% endfor %}</td>
                   <td>
                      <a class="btn btn-warning" href="{{ path('edit_order', {'id' : order.id }) }}">
                         EDIT
@@ -34,6 +36,14 @@
                         DELETE
                      </a>
                   </td>
+               </tr>
+
+
+               <tr>
+               <td></td>
+               <td></td>
+               <td></td>
+               <td>Total payment: {{sum}}$</td>
                </tr>
          </tbody> 
       </table>
