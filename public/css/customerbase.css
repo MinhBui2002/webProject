@@ -195,7 +195,7 @@ footer {
 }
 
 .footer-content {
-    display: flex;
+    display: relative;
     align-items: center;
     justify-content: center;
     flex-direction: column;
